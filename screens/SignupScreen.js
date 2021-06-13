@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity, Platform, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Platform, Image, StyleSheet } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
@@ -14,6 +14,11 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <Image
+        source={require('../assets/rn-motor-logo1.png')}
+        style={styles.logo}
+      />
+      {/* <Text style={styles.text}>My Motor Wash</Text> */}
       <Text style={styles.text}>Create an account</Text>
 
       <FormInput
@@ -100,6 +105,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 20,
+  },
+  logo: {
+    height: 150,
+    width: 150,
+    // resizeMode: 'cover',
+    resizeMode: 'contain',
+    marginTop: -15,
   },
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',

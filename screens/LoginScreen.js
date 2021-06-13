@@ -22,10 +22,10 @@ const LoginScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={require('../assets/rn-social-logo.png')}
+        source={require('../assets/rn-motor-logo1.png')}
         style={styles.logo}
       />
-      <Text style={styles.text}>RN Social App</Text>
+      <Text style={styles.text}>My Motor Wash</Text>
 
       <FormInput
         labelValue={email}
@@ -97,7 +97,8 @@ const styles = StyleSheet.create({
   logo: {
     height: 150,
     width: 150,
-    resizeMode: 'cover',
+    // resizeMode: 'cover',
+    resizeMode: 'contain',
   },
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',
