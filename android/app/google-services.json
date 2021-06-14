@@ -1,0 +1,97 @@
+{
+  "project_info": {
+    "project_number": "459665027349",
+    "project_id": "rajsocialapp",
+    "storage_bucket": "rajsocialapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459665027349:android:fed3345064e2c7fc4fb91c",
+        "android_client_info": {
+          "package_name": "com.androidmwash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzRrCW6a3c3BU6Cu6tNvVhLWkDpWzAonc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459665027349:android:7188eb351f2f6b8d4fb91c",
+        "android_client_info": {
+          "package_name": "com.motorwashand"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzRrCW6a3c3BU6Cu6tNvVhLWkDpWzAonc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:459665027349:android:feb6be66ee10efa34fb91c",
+        "android_client_info": {
+          "package_name": "com.rajsocialapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzRrCW6a3c3BU6Cu6tNvVhLWkDpWzAonc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

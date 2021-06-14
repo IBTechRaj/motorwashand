@@ -11,13 +11,13 @@ import AntDesign from 'react-native-vector-icons'
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
-// import { AuthContext } from '../navigation/AuthProvider';
+import { AuthContext } from '../navigation/AuthProvider';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
 
-  // const { login } = useContext(AuthContext);
+  const { login } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
