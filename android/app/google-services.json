@@ -1,91 +1,34 @@
 {
   "project_info": {
-    "project_number": "459665027349",
-    "project_id": "rajsocialapp",
-    "storage_bucket": "rajsocialapp.appspot.com"
+    "project_number": "408982107627",
+    "firebase_url": "https://motorwash-8e684-default-rtdb.firebaseio.com",
+    "project_id": "motorwash-8e684",
+    "storage_bucket": "motorwash-8e684.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:459665027349:android:fed3345064e2c7fc4fb91c",
-        "android_client_info": {
-          "package_name": "com.androidmwash"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDzRrCW6a3c3BU6Cu6tNvVhLWkDpWzAonc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:459665027349:android:7188eb351f2f6b8d4fb91c",
+        "mobilesdk_app_id": "1:408982107627:android:2c969b144b1ddd710fd5ae",
         "android_client_info": {
           "package_name": "com.motorwashand"
         }
       },
       "oauth_client": [
         {
-          "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
+          "client_id": "408982107627-os443d7uv88t5ojh01prc09s45qtm409.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDzRrCW6a3c3BU6Cu6tNvVhLWkDpWzAonc"
+          "current_key": "AIzaSyAmaltrw4fXAnMq2ZICW-yQjdNRRs0amDM"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:459665027349:android:feb6be66ee10efa34fb91c",
-        "android_client_info": {
-          "package_name": "com.rajsocialapp"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDzRrCW6a3c3BU6Cu6tNvVhLWkDpWzAonc"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": [
-            {
-              "client_id": "459665027349-akipg4gong2ds8usm0af6p78cmdc1fj4.apps.googleusercontent.com",
+              "client_id": "408982107627-os443d7uv88t5ojh01prc09s45qtm409.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
