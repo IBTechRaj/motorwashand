@@ -4,7 +4,8 @@ import {
   Text,
   TouchableOpacity,
   Image,
-  StyleSheet
+  StyleSheet,
+  Alert
 } from 'react-native';
 
 import AntDesign from 'react-native-vector-icons'
@@ -12,6 +13,7 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import { AuthContext } from '../navigation/AuthProvider';
+import validator from 'validator';
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
@@ -47,7 +49,14 @@ const LoginScreen = ({ navigation }) => {
 
       <FormButton
         buttonTitle="Sign In"
-        onPress={() => login(email, password)}
+        onPress={() => {
+          if (validator.isEmail(email)) {
+            login(email, password)
+          } else {
+            Alert.alert('Please enter valid email')
+          }
+        }
+        }
       />
 
       <TouchableOpacity style={styles.forgotButton} onPress={() => { }}>

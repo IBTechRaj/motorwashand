@@ -1,9 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity, Platform, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Platform, Image, StyleSheet, Alert } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import { AuthContext } from '../navigation/AuthProvider';
+import validator from 'validator';
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
@@ -49,7 +50,17 @@ const SignupScreen = ({ navigation }) => {
 
       <FormButton
         buttonTitle="Sign Up"
-        onPress={() => register(email, password)}
+        onPress={() => {
+          if (!validator.isEmail(email)) {
+            Alert.alert('Please enter valid email')
+          } else
+            if (password != confirmPassword) {
+              Alert.alert('Password and Confirm Password do not match')
+            } else {
+              register(email, password)
+            }
+        }
+        }
       />
 
       <View style={styles.textPrivate}>
