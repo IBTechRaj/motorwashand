@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { Alert, View, Modal, Button, Text, StyleSheet, ImageBackground, Pressable } from 'react-native'
 import FormButton from '../components/FormButton'
-import FormInput from '../components/FormInput';
+import BookingInput from '../components/BookingInput';
+import { windowHeight, windowWidth } from '../utils/Dimentions';
 // import Firebase from 'firebase'
 
 import auth from '@react-native-firebase/auth'
@@ -115,7 +116,9 @@ const HomeScreen = () => {
 
         <Text style={styles.text}>Welcome</Text>
 
-        <FormButton buttonTitle='Logout' onPress={() => logout()} />
+        <Pressable onPress={() => logout()} >
+          <Text style={styles.btnLogout}>Logout</Text>
+        </Pressable>
         <Modal
           animationType="slide"
           transparent={true}
@@ -128,73 +131,91 @@ const HomeScreen = () => {
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <Text style={styles.modalText}>Enter your Booking Details</Text>
-              <FormInput
-                labelValue={name}
-                onChangeText={(name) => setName(name)}
-                placeholderText="Name"
-                iconType="user"
-              />
-
-              <FormInput
-                labelValue={mobile}
-                onChangeText={(mobile) => setMobile(mobile)}
-                placeholderText="Mobile"
-              />
-
-              <FormInput
-                labelValue={washDate}
-                onChangeText={(washDate) => setWashDate(washDate)}
-                placeholderText="Date of Wash"
-              />
-              <FormInput
-                labelValue={washTime}
-                onChangeText={(washTime) => setWashTime(washTime)}
-                placeholderText="Time of Wash"
-              />
-              <FormInput
-                labelValue={address1}
-                onChangeText={(address1) => setAddress1(address1)}
-                placeholderText="Address1"
-              />
-              <FormInput
+              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
+                <BookingInput
+                  labelValue={name}
+                  onChangeText={(name) => setName(name)}
+                  placeholderText="Name"
+                  iconType="user"
+                />
+              </View>
+              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
+                <BookingInput
+                  labelValue={mobile}
+                  onChangeText={(mobile) => setMobile(mobile)}
+                  placeholderText="Mobile"
+                /></View>
+              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
+                <BookingInput
+                  labelValue={washDate}
+                  onChangeText={(washDate) => setWashDate(washDate)}
+                  placeholderText="Date of Wash"
+                /></View>
+              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
+                <BookingInput
+                  labelValue={washTime}
+                  onChangeText={(washTime) => setWashTime(washTime)}
+                  placeholderText="Time of Wash"
+                /></View>
+              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
+                <BookingInput
+                  labelValue={address1}
+                  onChangeText={(address1) => setAddress1(address1)}
+                  placeholderText="Address1"
+                /></View>
+              <BookingInput
                 labelValue={address2}
                 onChangeText={(address2) => setAddress2(address2)}
                 placeholderText="Address2"
               />
-              <FormInput
+              <BookingInput
                 labelValue={address3}
                 onChangeText={(address3) => setAddress3(address3)}
                 placeholderText="Address3"
               />
-              <FormInput
+              <BookingInput
                 labelValue={address4}
                 onChangeText={(address4) => setAddress4(address4)}
                 placeholderText="Address4"
               />
-              <FormInput
-                labelValue={pincode}
-                onChangeText={(pincode) => setPincode(pincode)}
-                placeholderText="Pin Code"
-              />
+              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
+                <BookingInput
+                  labelValue={pincode}
+                  onChangeText={(pincode) => setPincode(pincode)}
+                  placeholderText="Pin Code"
+                /></View>
               <Pressable
-                style={[styles.button, styles.buttonClose]}
+                // style={styles.submitStyle}
+                // style={[styles.button, styles.buttonClose]}
                 onPress={() => {
-                  setModalVisible(!modalVisible)
-                  saveBooking()
+                  if (name && mobile && washDate && washTime && address1 && pincode) {
+                    setModalVisible(!modalVisible)
+                    saveBooking()
+                  } else {
+                    Alert.alert("Please enter the required details")
+                  }
                   // bookingHtmlFromObject(mess)
                   // Alert.alert(user.uid, user.email)
                 }}
               >
-                <Text style={styles.textStyle}>Submit</Text>
+                <Text style={styles.btnSubmit}>Submit</Text>
+              </Pressable>
+              <Pressable
+                onPress={() => {
+                  setModalVisible(!modalVisible)
+
+                }}
+              >
+                <Text style={styles.btnCancel}>Cancel</Text>
               </Pressable>
             </View>
           </View>
         </Modal>
         <Pressable
-          style={[styles.textStyle, styles.buttonOpen]}
+          // style={[styles.textStyle, styles.buttonOpen]}
           onPress={() => setModalVisible(true)}
         >
-          <Text style={styles.textStyle}>Book Slot</Text>
+          <Text style={styles.btnBookSlot}>Book Slot</Text>
           {/* <FormButton buttonTitle='Book Slot' style={{ alignSelf: 'flex-start' }} onPress={() => setShowModal(true)} /> */}
         </Pressable>
 
@@ -222,11 +243,16 @@ const styles = StyleSheet.create({
     color: 'white',
     alignSelf: 'flex-start',
   },
-  // submitStyle: {
-  //   fontSize: 20,
-  //   color: 'white',
-  //   alignSelf: 'flex-start',
-  // },
+  btnSubmit: {
+    backgroundColor: 'blue',
+    width: windowWidth / 1.5,
+    fontSize: 20,
+    color: 'white',
+    // alignSelf: 'flex-start',
+    // width: '100%',
+    width: windowWidth / 1.5,
+    height: windowHeight / 10,
+  },
   image: {
     flex: 1,
     resizeMode: 'contain',
@@ -255,10 +281,52 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     elevation: 5
   },
-  button: {
-    borderRadius: 20,
+  modalMandatory: {
+    color: 'red'
+  },
+  btnLogout: {
+    borderRadius: 5,
     padding: 10,
-    elevation: 2
+    elevation: 2,
+    width: windowWidth / 4,
+    backgroundColor: "#fa2549",
+    alignSelf: 'flex-end',
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  btnBookSlot: {
+    borderRadius: 5,
+    padding: 10,
+    elevation: 2,
+    width: windowWidth / 4,
+    backgroundColor: "#0eb51c",
+    alignSelf: 'center',
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  btnSubmit: {
+    borderRadius: 5,
+    padding: 10,
+    elevation: 2,
+    width: windowWidth / 1.45,
+    backgroundColor: "#2e64e5",
+    // alignSelf: 'center',
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  btnCancel: {
+    borderRadius: 5,
+    padding: 10,
+    elevation: 2,
+    width: windowWidth / 1.45,
+    backgroundColor: "#fa2549",
+    marginTop: 5,
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center"
   },
   buttonOpen: {
     backgroundColor: "#F194FF",
@@ -273,7 +341,8 @@ const styles = StyleSheet.create({
   },
   modalText: {
     marginBottom: 15,
-    textAlign: "center"
+    textAlign: "center",
+    fontWeight: "bold"
   }
 })
 

@@ -15,10 +15,10 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Image
+      {/* <Image
         source={require('../assets/rn-motor-logo1.png')}
         style={styles.logo}
-      />
+      /> */}
       {/* <Text style={styles.text}>My Motor Wash</Text> */}
       <Text style={styles.text}>Create an account</Text>
 
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',
-    fontSize: 28,
+    fontSize: 20,
     marginBottom: 10,
     color: '#051d5f',
   },
