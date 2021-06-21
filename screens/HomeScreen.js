@@ -3,7 +3,9 @@ import { Alert, View, Modal, Button, Text, StyleSheet, ImageBackground, Pressabl
 import FormButton from '../components/FormButton'
 import BookingInput from '../components/BookingInput';
 import { windowHeight, windowWidth } from '../utils/Dimentions';
+import { Picker } from '@react-native-picker/picker'
 // import Firebase from 'firebase'
+import DatePicker from 'react-native-date-picker'
 
 import auth from '@react-native-firebase/auth'
 
@@ -17,7 +19,7 @@ const HomeScreen = () => {
   const { user, logout } = useContext(AuthContext)
   const [name, setName] = useState()
   const [mobile, setMobile] = useState()
-  const [washDate, setWashDate] = useState()
+  const [washDate, setWashDate] = useState(new Date())
   const [washTime, setWashTime] = useState()
   const [address1, setAddress1] = useState()
   const [address2, setAddress2] = useState()
@@ -26,6 +28,7 @@ const HomeScreen = () => {
   const [pincode, setPincode] = useState()
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [selectedValue, setSelectedValue] = useState("Uppal");
 
   const saveBooking = () => {
     if (name && mobile) {
@@ -38,9 +41,9 @@ const HomeScreen = () => {
 
         location: {
           door: address1,
-          street: address2,
-          sub_area: address3,
-          main_area: address4,
+          street: (address2 || "Xx"),
+          sub_area: (address3 || "Xx"),
+          main_area: (address4 || "Xx"),
           pin: pincode
         }
       })
@@ -119,6 +122,25 @@ const HomeScreen = () => {
         <Pressable onPress={() => logout()} >
           <Text style={styles.btnLogout}>Logout</Text>
         </Pressable>
+
+
+        <View style={styles.centeredNotes}>
+          <Text style={styles.centeredNotes}>At Present we are servicing the following locations</Text>
+          <Text style={styles.centeredNotes}>Click to view</Text>
+        </View>
+
+        <View style={styles.centeredNotes}>
+          <Picker
+            selectedValue={selectedValue}
+            style={{ height: 50, width: 150, color: '#ffffff' }}
+            onValueChange={(itemValue, itemIndex) => setSelectedValue(itemValue)}
+          >
+            <Picker.Item label="Uppal" value="uppal" style={{ borderColor: '#ffffff' }} />
+            <Picker.Item label="Habsiguda" value="habsiguda" />
+            <Picker.Item label="L B Nagar" value="L B Nagar" />
+            <Picker.Item label="Malkajgiri" value="malkajgiri" />
+          </Picker>
+        </View>
         <Modal
           animationType="slide"
           transparent={true}
@@ -146,11 +168,18 @@ const HomeScreen = () => {
                   placeholderText="Mobile"
                 /></View>
               <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
+
+                <DatePicker
+                  washDate={washDate}
+                  onDateChange={setWashDate}
+                />
+                {/* <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
                 <BookingInput
                   labelValue={washDate}
                   onChangeText={(washDate) => setWashDate(washDate)}
-                  placeholderText="Date of Wash"
-                /></View>
+                  placeholderText="Date of Wash" */}
+                {/* /> */}
+              </View>
               <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
                 <BookingInput
                   labelValue={washTime}
@@ -224,7 +253,7 @@ const HomeScreen = () => {
 
         {/* <BookingForm /> */}
       </ImageBackground>
-    </View>
+    </View >
   )
 }
 
@@ -236,7 +265,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    padding: 20,
+    // padding: 20,
   },
   textStyle: {
     fontSize: 20,
@@ -265,6 +294,24 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22
+  },
+  centeredNotes: {
+    // flex: 1,
+    fontSize: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+    color: "#ffffff"
+    // , borderWidth: 5, borderColor: '#ffffff'
+  },
+  centeredList: {
+    // flex: 1,
+    fontSize: 12,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+    color: "#ffffff"
+    , borderWidth: 1, borderColor: '#ffffff'
   },
   modalView: {
     margin: 20,
