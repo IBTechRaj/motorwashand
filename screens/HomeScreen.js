@@ -5,7 +5,8 @@ import BookingInput from '../components/BookingInput';
 import { windowHeight, windowWidth } from '../utils/Dimentions';
 import { Picker } from '@react-native-picker/picker'
 // import Firebase from 'firebase'
-import DatePicker from 'react-native-date-picker'
+// import DatePicker from 'react-native-date-picker'
+import DatePicker from 'react-native-datepicker'
 
 import auth from '@react-native-firebase/auth'
 
@@ -20,7 +21,7 @@ const HomeScreen = () => {
   const [name, setName] = useState()
   const [mobile, setMobile] = useState()
   const [washDate, setWashDate] = useState(new Date())
-  const [washTime, setWashTime] = useState()
+  const [washTimeSlot, setWashTimeSlot] = useState('Time Slot')
   const [address1, setAddress1] = useState()
   const [address2, setAddress2] = useState()
   const [address3, setAddress3] = useState()
@@ -29,6 +30,7 @@ const HomeScreen = () => {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState("Uppal");
+  // const [selectedSlot, setSelectedSlot] = useState('6 a.m. to 7 a.m.');
 
   const saveBooking = () => {
     if (name && mobile) {
@@ -37,7 +39,7 @@ const HomeScreen = () => {
         mobile: mobile,
         wash_date: washDate,
 
-        wash_time: washTime,
+        wash_time: washTimeSlot,
 
         location: {
           door: address1,
@@ -48,7 +50,8 @@ const HomeScreen = () => {
         }
       })
     }
-    Alert.alert("Hi " + name + " We have received your order with the following details")
+    // Alert.alert("Hi " + name + " We have received your order with the following details " + name + " " + mobile + " " + washDate + " " + washTime + " " + address1 + " " + address2 + " " + address3 + " " + address4 + " " + pincode)
+    Alert.alert("Hi " + name + " We have received your order with the following details " + name + " " + mobile + " " + washDate + " " + washTimeSlot + " " + pincode)
   }
 
   auth().onAuthStateChanged((user) => {
@@ -170,9 +173,36 @@ const HomeScreen = () => {
               <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
 
                 <DatePicker
-                  washDate={washDate}
-                  onDateChange={setWashDate}
+                  style={styles.datePickerStyle}
+                  date={washDate} // Initial date from state
+                  mode="date" // The enum of date, datetime and time
+                  placeholder="select date"
+                  format="DD-MM-YYYY"
+                  minDate={new Date()}
+                  maxDate="01-01-2022"
+                  confirmBtnText="Confirm"
+                  cancelBtnText="Cancel"
+                  customStyles={{
+                    dateIcon: {
+                      //display: 'none',
+                      position: 'absolute',
+                      left: 0,
+                      top: 4,
+                      marginLeft: 0,
+                    },
+                    dateInput: {
+                      marginLeft: 36,
+                    },
+                  }}
+                  onDateChange={(date) => {
+                    setWashDate(date);
+                  }}
                 />
+                {/* <DatePicker
+                  date={washDate}
+                  mode="date"
+                  onChangeDate={(washDate) => setWashDate(washDate)}
+                /> */}
                 {/* <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
                 <BookingInput
                   labelValue={washDate}
@@ -181,11 +211,50 @@ const HomeScreen = () => {
                 {/* /> */}
               </View>
               <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
-                <BookingInput
+                <Picker
+                  washTimeSlot={washTimeSlot}
+
+                  // style={{ height: 50, width: 100, color: '#000000' }}
+                  style={styles.timePickerStyle}
+                  customStyles={{
+                    dateIcon: {
+                      //display: 'none',
+                      position: 'absolute',
+                      left: 0,
+                      top: 4,
+                      marginLeft: 0,
+                    },
+                    dateInput: {
+                      marginLeft: 36,
+                    },
+                  }}
+                  onValueChange={(itemValue, itemIndex) => setWashTimeSlot(itemValue)}
+                >
+                  <Picker.Item label="Time Slot:    6 - 7 AM" value='6 - 7 AM' style={{ borderColor: '#ffffff' }} />
+                  <Picker.Item label="Time Slot:    7 - 8 AM" value='7 - 8 AM' />
+                  <Picker.Item label="Time Slot:    8 - 9 AM" value='8 - 9 AM' />
+                  <Picker.Item label="Time Slot:    9 - 10 AM" value='9 - 10 AM' />
+                  <Picker.Item label="Time :    10 - 11 AM" value='10 - 11 AM' />
+                  <Picker.Item label="Time :    11 - 12 Nn" value='11 - 12 Nn' />
+                  <Picker.Item label="Time :    12 Nn - 1 PM" value='12 Nn - 1 PM' />
+                  <Picker.Item label="Time Slot:    1 - 2 PM" value='1 - 2 PM' />
+                  <Picker.Item label="Time Slot:    2 - 3 PM" value='2 - 3 PM' />
+                  <Picker.Item label="Time Slot:    3 - 4 PM" value='3 - 4 PM' />
+                  <Picker.Item label="Time Slot:    4 - 5 PM" value='4 - 5 PM' />
+                  <Picker.Item label="Time Slot:    5 - 6 PM" value='5 - 6 PM' />
+                  <Picker.Item label="Time Slot:    6 - 7 PM" value='6 - 7 PM' />
+                  {/* <Picker.Item label="Uppal" value="uppal" style={{ borderColor: '#ffffff' }} />
+                  <Picker.Item label="Habsiguda" value="habsiguda" />
+                  <Picker.Item label="L B Nagar" value="L B Nagar" />
+                  <Picker.Item label="Malkajgiri" value="malkajgiri" /> */}
+                </Picker>
+
+                {/* <BookingInput
                   labelValue={washTime}
                   onChangeText={(washTime) => setWashTime(washTime)}
                   placeholderText="Time of Wash"
-                /></View>
+                /> */}
+              </View>
               <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
                 <BookingInput
                   labelValue={address1}
@@ -217,7 +286,7 @@ const HomeScreen = () => {
                 // style={styles.submitStyle}
                 // style={[styles.button, styles.buttonClose]}
                 onPress={() => {
-                  if (name && mobile && washDate && washTime && address1 && pincode) {
+                  if (name && mobile && washDate && washTimeSlot && address1 && pincode) {
                     setModalVisible(!modalVisible)
                     saveBooking()
                   } else {
@@ -288,6 +357,15 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     margin: 0,
+  },
+  datePickerStyle: {
+    width: 200,
+    marginTop: 5,
+  },
+  timePickerStyle: {
+    width: 200,
+    marginTop: 5,
+    color: '#000000'
   },
   centeredView: {
     flex: 1,
