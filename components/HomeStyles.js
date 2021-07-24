@@ -1,8 +1,24 @@
 import React from 'react'
 
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, PixelRatio, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { windowHeight, windowWidth } from '../utils/Dimentions';
 
+// const {
+//   width: SCREEN_WIDTH,
+//   height: SCREEN_HEIGHT,
+// } = Dimensions.get('window');
+
+// based on iphone 5s's scale
+const scale = windowWidth / 320;
+
+export function normalize(size) {
+  const newSize = size * scale
+  if (Platform.OS === 'ios') {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize))
+  } else {
+    return Math.round(PixelRatio.roundToNearestPixel(newSize)) - 2
+  }
+}
 const HomeStyles = (props) => {
 
   return (
@@ -28,14 +44,16 @@ export const styles = StyleSheet.create({
     // padding: 20,
   },
   textStyle: {
-    fontSize: 20,
+    // fontSize: 20,
+    fontSize: normalize(12),
     color: 'white',
     alignSelf: 'flex-start',
   },
   btnSubmit: {
     backgroundColor: 'blue',
     width: windowWidth / 1.5,
-    fontSize: 20,
+    // fontSize: 20,
+    fontSize: normalize(12),
     color: 'white',
     // alignSelf: 'flex-start',
     // width: '100%',
@@ -66,7 +84,8 @@ export const styles = StyleSheet.create({
   },
   centeredNotes: {
     // flex: 1,
-    fontSize: 12,
+    // fontSize: 12,
+    fontSize: normalize(12),
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
@@ -75,7 +94,8 @@ export const styles = StyleSheet.create({
   },
   centeredList: {
     // flex: 1,
-    fontSize: 12,
+    // fontSize: 12,
+    fontSize: normalize(12),
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
@@ -101,6 +121,7 @@ export const styles = StyleSheet.create({
     color: 'red'
   },
   btnLogout: {
+    fontSize: normalize(12),
     borderRadius: 5,
     padding: 10,
     elevation: 2,
@@ -112,6 +133,7 @@ export const styles = StyleSheet.create({
     textAlign: "center"
   },
   btnBookSlot: {
+    fontSize: normalize(12),
     borderRadius: 5,
     padding: 10,
     elevation: 2,
@@ -123,10 +145,12 @@ export const styles = StyleSheet.create({
     textAlign: "center"
   },
   btnSubmit: {
+    fontSize: normalize(12),
     borderRadius: 5,
+    paddingLeft: 3,
     padding: 10,
     elevation: 2,
-    width: windowWidth / 1.45,
+    width: windowWidth / 1.40,
     backgroundColor: "#2e64e5",
     // alignSelf: 'center',
     color: "white",
@@ -134,10 +158,11 @@ export const styles = StyleSheet.create({
     textAlign: "center"
   },
   btnCancel: {
+    fontSize: normalize(12),
     borderRadius: 5,
     padding: 10,
     elevation: 2,
-    width: windowWidth / 1.45,
+    width: windowWidth / 1.40,
     backgroundColor: "#fa2549",
     marginTop: 5,
     color: "white",
@@ -151,11 +176,13 @@ export const styles = StyleSheet.create({
     backgroundColor: "#2196F3",
   },
   text: {
+    fontSize: normalize(12),
     color: "white",
     fontWeight: "bold",
     textAlign: "center"
   },
   modalText: {
+    fontSize: normalize(12),
     marginBottom: 15,
     textAlign: "center",
     fontWeight: "bold"

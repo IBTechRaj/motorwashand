@@ -59,13 +59,13 @@ const OnboardingScreen = ({ navigation }) => {
       pages={[
         {
           backgroundColor: '#a6e4d0',
-          image: <Image source={require('../assets/rn-motor-wash2.png')} />,
+          image: <Image source={require('../assets/rn-motor-wash1.png')} />,
           title: 'Splash your Car',
           subtitle: 'Have your car washed at home',
         },
         {
           backgroundColor: '#fdeb93',
-          image: <Image source={require('../assets/rn-motor-wash1.png')} />,
+          image: <Image source={require('../assets/rn-motor-wash2.jpg')} />,
           title: 'Shine your Car',
           subtitle: 'Get the polish that gives  a new look',
         },

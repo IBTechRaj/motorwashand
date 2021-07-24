@@ -14,6 +14,7 @@ import auth from '@react-native-firebase/auth'
 
 import { AuthContext } from '../navigation/AuthProvider';
 import { db } from '../src/config';
+import { MaterialDialog } from 'react-native-material-dialog';
 
 const bookingsRef = db.ref('bookings')
 
@@ -21,18 +22,30 @@ const HomeScreen = () => {
 
   const { user, logout } = useContext(AuthContext)
   const [name, setName] = useState()
-  const [mobile, setMobile] = useState()
+  const [mobile, setMobile] = useState(0)
   const [washDate, setWashDate] = useState(new Date())
   const [washTimeSlot, setWashTimeSlot] = useState('Time Slot')
   const [address1, setAddress1] = useState()
   const [address2, setAddress2] = useState()
   const [address3, setAddress3] = useState()
   const [address4, setAddress4] = useState()
-  const [pincode, setPincode] = useState()
+  const [pincode, setPincode] = useState(0)
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [msgModalVisible, setMsgModalVisible] = useState(false);
   const [selectedValue, setSelectedValue] = useState("Uppal");
   // const [selectedSlot, setSelectedSlot] = useState('6 a.m. to 7 a.m.');
+  const clearBooking = () => {
+    setName("")
+    setMobile(0)
+    setWashDate(new Date())
+    setWashTimeSlot('Time Slot')
+    setAddress1("")
+    setAddress2("")
+    setAddress3("")
+    setAddress4("")
+    setPincode(0)
+  }
 
   const saveBooking = () => {
     if (name && mobile) {
@@ -53,7 +66,9 @@ const HomeScreen = () => {
       })
     }
     // Alert.alert("Hi " + name + " We have received your order with the following details " + name + " " + mobile + " " + washDate + " " + washTime + " " + address1 + " " + address2 + " " + address3 + " " + address4 + " " + pincode)
-    Alert.alert("Hi " + name + " We have received your order with the following details " + name + " " + mobile + " " + washDate + " " + washTimeSlot + " " + pincode)
+    // Alert.alert("Hi " + name + " We have received your order with the following details:\n " + name + " \n" + mobile + "\n " + washDate + " \n" + washTimeSlot + " \n" + pincode)
+
+
   }
 
   auth().onAuthStateChanged((user) => {
@@ -78,6 +93,7 @@ const HomeScreen = () => {
     })
   }
   let mess;
+  // const name = <p>Name<span style={{ color: "red" } >*</span></p>
   const onChildAdd = (snap) => {
     mess = snap.val
     // Alert.alert(snap.val)
@@ -115,6 +131,7 @@ const HomeScreen = () => {
       '</div>'
     )
   }
+
   return (
 
     <View style={styles.container}>
@@ -148,6 +165,7 @@ const HomeScreen = () => {
             <Picker.Item label="Malkajgiri" value="malkajgiri" />
           </Picker>
         </View>
+
         <Modal
           animationType="slide"
           transparent={true}
@@ -173,6 +191,8 @@ const HomeScreen = () => {
                   labelValue={mobile}
                   onChangeText={(mobile) => setMobile(mobile)}
                   placeholderText="Mobile"
+                  maxLength={10}
+                  keyboardType={'numeric'}
                 /></View>
               <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
 
@@ -180,7 +200,7 @@ const HomeScreen = () => {
                   style={styles.datePickerStyle}
                   date={washDate} // Initial date from state
                   mode="date" // The enum of date, datetime and time
-                  placeholder="select date"
+                  // placeholder="select date"
                   format="DD-MM-YYYY"
                   minDate={new Date()}
                   maxDate="01-01-2022"
@@ -200,6 +220,7 @@ const HomeScreen = () => {
                   }}
                   onDateChange={(date) => {
                     setWashDate(date);
+                    Alert.alert(date)
                   }}
                 />
                 {/* <DatePicker
@@ -234,19 +255,19 @@ const HomeScreen = () => {
                   }}
                   onValueChange={(itemValue, itemIndex) => setWashTimeSlot(itemValue)}
                 >
-                  <Picker.Item label="Time Slot:    6 - 7 AM" value='6 - 7 AM' style={{ borderColor: '#ffffff' }} />
-                  <Picker.Item label="Time Slot:    7 - 8 AM" value='7 - 8 AM' />
-                  <Picker.Item label="Time Slot:    8 - 9 AM" value='8 - 9 AM' />
-                  <Picker.Item label="Time Slot:    9 - 10 AM" value='9 - 10 AM' />
+                  <Picker.Item label="Time :    6 - 7 AM" value='6 - 7 AM' style={{ borderColor: '#ffffff' }} />
+                  <Picker.Item label="Time :    7 - 8 AM" value='7 - 8 AM' />
+                  <Picker.Item label="Time :    8 - 9 AM" value='8 - 9 AM' />
+                  <Picker.Item label="Time :    9 - 10 AM" value='9 - 10 AM' />
                   <Picker.Item label="Time :    10 - 11 AM" value='10 - 11 AM' />
                   <Picker.Item label="Time :    11 - 12 Nn" value='11 - 12 Nn' />
                   <Picker.Item label="Time :    12 Nn - 1 PM" value='12 Nn - 1 PM' />
-                  <Picker.Item label="Time Slot:    1 - 2 PM" value='1 - 2 PM' />
-                  <Picker.Item label="Time Slot:    2 - 3 PM" value='2 - 3 PM' />
-                  <Picker.Item label="Time Slot:    3 - 4 PM" value='3 - 4 PM' />
-                  <Picker.Item label="Time Slot:    4 - 5 PM" value='4 - 5 PM' />
-                  <Picker.Item label="Time Slot:    5 - 6 PM" value='5 - 6 PM' />
-                  <Picker.Item label="Time Slot:    6 - 7 PM" value='6 - 7 PM' />
+                  <Picker.Item label="Time :    1 - 2 PM" value='1 - 2 PM' />
+                  <Picker.Item label="Time :    2 - 3 PM" value='2 - 3 PM' />
+                  <Picker.Item label="Time :    3 - 4 PM" value='3 - 4 PM' />
+                  <Picker.Item label="Time :    4 - 5 PM" value='4 - 5 PM' />
+                  <Picker.Item label="Time :    5 - 6 PM" value='5 - 6 PM' />
+                  <Picker.Item label="Time :    6 - 7 PM" value='6 - 7 PM' />
                   {/* <Picker.Item label="Uppal" value="uppal" style={{ borderColor: '#ffffff' }} />
                   <Picker.Item label="Habsiguda" value="habsiguda" />
                   <Picker.Item label="L B Nagar" value="L B Nagar" />
@@ -265,39 +286,69 @@ const HomeScreen = () => {
                   onChangeText={(address1) => setAddress1(address1)}
                   placeholderText="Address1"
                 /></View>
-              <BookingInput
-                labelValue={address2}
-                onChangeText={(address2) => setAddress2(address2)}
-                placeholderText="Address2"
-              />
-              <BookingInput
-                labelValue={address3}
-                onChangeText={(address3) => setAddress3(address3)}
-                placeholderText="Address3"
-              />
-              <BookingInput
-                labelValue={address4}
-                onChangeText={(address4) => setAddress4(address4)}
-                placeholderText="Address4"
-              />
+
+              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>  </Text>
+                <BookingInput
+                  labelValue={address2}
+                  onChangeText={(address2) => setAddress2(address2)}
+                  placeholderText="Address2"
+                /></View>
+
+              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>  </Text>
+                <BookingInput
+                  labelValue={address3}
+                  onChangeText={(address3) => setAddress3(address3)}
+                  placeholderText="Address3"
+                /></View>
+              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>  </Text>
+                <BookingInput
+                  labelValue={address4}
+                  onChangeText={(address4) => setAddress4(address4)}
+                  placeholderText="Address4"
+                /></View>
               <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
                 <BookingInput
                   labelValue={pincode}
                   onChangeText={(pincode) => setPincode(pincode)}
                   placeholderText="Pin Code"
+                  maxLength={6}
+                  keyboardType={'numeric'}
                 /></View>
-              <Pressable
-                // style={styles.submitStyle}
-                // style={[styles.button, styles.buttonClose]}
+              {/* <Pressable
                 onPress={() => {
-                  if (name && mobile && washDate && washTimeSlot && address1 && pincode) {
-                    setModalVisible(!modalVisible)
-                    saveBooking()
-                  } else {
-                    Alert.alert("Please enter the required details")
+                  if (mobile.length < 10) {
+                    Alert.alert("Please enter 10 digits for mobile")
                   }
-                  // bookingHtmlFromObject(mess)
-                  // Alert.alert(user.uid, user.email)
+                  else
+                    if (pincode.length < 6) {
+                      Alert.alert("Please enter 6 digits for pincode")
+                    }
+                    else
+                      if (name && mobile && washDate && washTimeSlot && address1 && pincode) {
+                        setModalVisible(!modalVisible)
+                        saveBooking()
+                      } else {
+                        Alert.alert("Please enter the required details")
+                      }
+                }}
+              > */}
+              <Pressable
+                onPress={() => {
+                  if (mobile.length < 10) {
+                    Alert.alert("Please enter 10 digits for mobile")
+                  }
+                  else
+                    if (pincode.length < 6) {
+                      Alert.alert("Please enter 6 digits for pincode")
+                    }
+                    else
+                      if (name && mobile && washDate && washTimeSlot && address1 && pincode) {
+                        setModalVisible(!modalVisible)
+                        setMsgModalVisible(!msgModalVisible)
+                        // saveBooking()
+                      } else {
+                        Alert.alert("Please enter all the required details")
+                      }
                 }}
               >
                 <Text style={styles.btnSubmit}>Submit</Text>
@@ -325,7 +376,28 @@ const HomeScreen = () => {
         {/* <FormButton buttonTitle='Book Slot' style={{ alignSelf: 'flex-start' }} onPress={() => setShowModal(true)} /> */}
 
         {/* <BookingForm /> */}
+        < MaterialDialog
+          title="Confirm Your Order"
+          visible={msgModalVisible}
+          onOk={() => {
+            saveBooking()
+            clearBooking()
+            Alert.alert("Booking confirmed")
+            setMsgModalVisible(!msgModalVisible)
+          }}
+          onCancel={() => {
+            Alert.alert("Booking Cancelled")
+            setMsgModalVisible(!msgModalVisible)
+          }}
+        >
+          < Text >
+            {"Hi " + name + ", We have received your order with the following details:\n " + "Name : " + name + " \n" + "Mobile : " + mobile + "\n " + "Date : " + washDate + " \n" + "Time : " + washTimeSlot}
+            {/* Let Google help apps determine location.This means sending anonymous */}
+            {/* location data to Google, even when no apps are running. */}
+          </Text >
+        </MaterialDialog >
       </ImageBackground>
+
     </View >
   )
 }
