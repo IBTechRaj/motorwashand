@@ -24,7 +24,7 @@ const HomeScreen = () => {
   const [name, setName] = useState()
   const [mobile, setMobile] = useState(0)
   const [washDate, setWashDate] = useState(new Date())
-  const [washTimeSlot, setWashTimeSlot] = useState('Time Slot')
+  const [washTimeSlot, setWashTimeSlot] = useState('6 - 7 AM')
   const [address1, setAddress1] = useState()
   const [address2, setAddress2] = useState()
   const [address3, setAddress3] = useState()
@@ -39,7 +39,7 @@ const HomeScreen = () => {
     setName("")
     setMobile(0)
     setWashDate(new Date())
-    setWashTimeSlot('Time Slot')
+    setWashTimeSlot('6 - 7 AM')
     setAddress1("")
     setAddress2("")
     setAddress3("")
@@ -220,7 +220,7 @@ const HomeScreen = () => {
                   }}
                   onDateChange={(date) => {
                     setWashDate(date);
-                    Alert.alert(date)
+                    // Alert.alert(date)
                   }}
                 />
                 {/* <DatePicker
@@ -241,18 +241,18 @@ const HomeScreen = () => {
 
                   // style={{ height: 50, width: 100, color: '#000000' }}
                   style={styles.timePickerStyle}
-                  customStyles={{
-                    dateIcon: {
-                      //display: 'none',
-                      position: 'absolute',
-                      left: 0,
-                      top: 4,
-                      marginLeft: 0,
-                    },
-                    dateInput: {
-                      marginLeft: 36,
-                    },
-                  }}
+                  // customStyles={{
+                  //   dateIcon: {
+                  //     //display: 'none',
+                  //     position: 'absolute',
+                  //     left: 0,
+                  //     top: 4,
+                  //     marginLeft: 0,
+                  //   },
+                  //   dateInput: {
+                  //     marginLeft: 36,
+                  //   },
+                  // }}
                   onValueChange={(itemValue, itemIndex) => setWashTimeSlot(itemValue)}
                 >
                   <Picker.Item label="Time :    6 - 7 AM" value='6 - 7 AM' style={{ borderColor: '#ffffff' }} />
