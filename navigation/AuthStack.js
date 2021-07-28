@@ -8,6 +8,7 @@ import LoginScreen from '../screens/LoginScreen'
 
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import AsyncStorage from '@react-native-async-storage/async-storage'
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 const Stack = createStackNavigator()
 
@@ -24,6 +25,9 @@ const AuthStack = () => {
         setIsFirstLaunch(false)
       }
     })
+    GoogleSignin.configure({
+      webClientId: "408982107627-os443d7uv88t5ojh01prc09s45qtm409.apps.googleusercontent.com",
+    });
   }, [])
 
   if (isFirstLaunch == null) {

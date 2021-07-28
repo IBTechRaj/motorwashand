@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "408982107627-7mg7gql7dgg44veckrdofmhdracebht3.apps.googleusercontent.com",
+          "client_id": "408982107627-gjlprhv8ev5irrrpajg182jctd4ebac8.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.motorwashand",
-            "certificate_hash": "3f67dac4cb66ba6a4be3911ea478bd3d8b2a7669"
+            "certificate_hash": "5e8f16062ea3cd2c4a0d547876baa6f38cabf625"
           }
         },
         {
