@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
   centeredNotes: {
     // flex: 1,
     // fontSize: 12,
-    fontSize: normalize(12),
+    fontSize: normalize(14),
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
@@ -95,7 +95,7 @@ export const styles = StyleSheet.create({
   centeredList: {
     // flex: 1,
     // fontSize: 12,
-    fontSize: normalize(12),
+    fontSize: normalize(14),
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
@@ -121,7 +121,7 @@ export const styles = StyleSheet.create({
     color: 'red'
   },
   btnLogout: {
-    fontSize: normalize(12),
+    fontSize: normalize(14),
     borderRadius: 5,
     padding: 10,
     elevation: 2,
@@ -133,7 +133,7 @@ export const styles = StyleSheet.create({
     textAlign: "center"
   },
   btnBookSlot: {
-    fontSize: normalize(12),
+    fontSize: normalize(14),
     borderRadius: 5,
     padding: 10,
     elevation: 2,
@@ -145,7 +145,7 @@ export const styles = StyleSheet.create({
     textAlign: "center"
   },
   btnSubmit: {
-    fontSize: normalize(12),
+    fontSize: normalize(14),
     borderRadius: 5,
     paddingLeft: 3,
     padding: 10,
@@ -158,7 +158,7 @@ export const styles = StyleSheet.create({
     textAlign: "center"
   },
   btnCancel: {
-    fontSize: normalize(12),
+    fontSize: normalize(14),
     borderRadius: 5,
     padding: 10,
     elevation: 2,
@@ -176,13 +176,13 @@ export const styles = StyleSheet.create({
     backgroundColor: "#2196F3",
   },
   text: {
-    fontSize: normalize(12),
+    fontSize: normalize(14),
     color: "white",
     fontWeight: "bold",
     textAlign: "center"
   },
   modalText: {
-    fontSize: normalize(12),
+    fontSize: normalize(14),
     marginBottom: 15,
     textAlign: "center",
     fontWeight: "bold"

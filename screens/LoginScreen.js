@@ -50,11 +50,23 @@ const LoginScreen = ({ navigation }) => {
       <FormButton
         buttonTitle="Sign In"
         onPress={() => {
-          if (validator.isEmail(email)) {
-            login(email, password)
-          } else {
-            Alert.alert('Please enter valid email')
-          }
+          if (!email && !password) {
+            Alert.alert('Please enter all details to signin')
+          } else
+            if (!email) {
+              Alert.alert('Please enter Email')
+            } else
+              if (!validator.isEmail(email)) {
+                Alert.alert('Please enter valid email')
+              } else
+                if (!password) {
+                  Alert.alert('Please enter Password')
+                } else
+                  if ((email) && (password) && validator.isEmail(email)) {
+                    login(email, password)
+                  } else {
+                    Alert.alert('Please enter valid email')
+                  }
         }
         }
       />
@@ -65,13 +77,13 @@ const LoginScreen = ({ navigation }) => {
 
       {Platform.OS === 'android' ? (
         <View>
-          <SocialButton
+          {/* <SocialButton
             buttonTitle="Sign In with Facebook"
             btnType="facebook"
             color="#4867aa"
             backgroundColor="#e6eaf4"
             onPress={() => { }}
-          />
+          /> */}
 
           <SocialButton
             buttonTitle="Sign In with Google"
@@ -99,16 +111,18 @@ export default LoginScreen;
 const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
+    flex: 1,
     alignItems: 'center',
-    padding: 20,
-    paddingTop: 50
+
+    // padding: 20,
+    paddingTop: 80
   },
-  logo: {
-    height: 150,
-    width: 150,
-    // resizeMode: 'cover',
-    resizeMode: 'contain',
-  },
+  // logo: {
+  //   height: 150,
+  //   width: 150,
+  // resizeMode: 'cover',
+  //   resizeMode: 'contain',
+  // },
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 20,
@@ -128,3 +142,9 @@ const styles = StyleSheet.create({
     fontFamily: 'Lato-Regular',
   },
 });
+
+// if (validator.isEmail(email)) {
+//   login(email, password)
+// } else {
+//   Alert.alert('Please enter valid email')
+// }

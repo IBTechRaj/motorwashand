@@ -1,0 +1,21 @@
+https://stackoverflow.com/questions/54417232/react-native-google-signin-gives-developer-error/65339002#65339002
+
+
+Walkthrough for different modes:
+
+Development Firebase
+run cd android && ./gradlew signingReport.
+Copy the SHA-1 hash and paste it into the firebase console under Android in Project Settings.
+Download the google-services.json file from the Firebase settings and paste the file into android/app
+Use the client client_type: 3 clientId inside the config.
+Development non-Firebase
+run cd android && ./gradlew signingReport.
+Copy the SHA-1 hash
+Go to Google Cloud Platform Console and click Create Credentials -> OAuthClientID. Choose type Android and paste the hash and fill in the form
+Create another Client by clicking Create Credentials, but choose type Web application this time.
+Use the webclient in your code
+Production/Release version
+Go to the Google Play console and copy SHA-1 key from Release -> Setup -> App Integrity
+Go to Google Cloud Platform Console and click Create Credentials -> OAuthClientID. Choose type Android and paste the hash and fill in the form
+Create another Client by clicking Create Credentials, but choose type Web application this time.
+Use the webclient in your code

@@ -171,7 +171,7 @@ const HomeScreen = () => {
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert("Modal has been closed.");
+            // Alert.alert("Modal has been closed.");
             setModalVisible(!modalVisible);
           }}
         >
@@ -294,18 +294,18 @@ const HomeScreen = () => {
                   placeholderText="Address2"
                 /></View>
 
-              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>  </Text>
+              {/* <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>  </Text>
                 <BookingInput
                   labelValue={address3}
                   onChangeText={(address3) => setAddress3(address3)}
                   placeholderText="Address3"
-                /></View>
-              <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>  </Text>
+                /></View> */}
+              {/* <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>  </Text>
                 <BookingInput
                   labelValue={address4}
                   onChangeText={(address4) => setAddress4(address4)}
                   placeholderText="Address4"
-                /></View>
+                /></View> */}
               <View style={{ flexDirection: "row" }}><Text style={styles.modalMandatory}>*</Text>
                 <BookingInput
                   labelValue={pincode}
@@ -338,17 +338,21 @@ const HomeScreen = () => {
                     Alert.alert("Please enter 10 digits for mobile")
                   }
                   else
-                    if (pincode.length < 6) {
-                      Alert.alert("Please enter 6 digits for pincode")
+                    if (washDate <= new Date()) {
+                      Alert.alert("Please enter a date greater than today")
                     }
                     else
-                      if (name && mobile && washDate && washTimeSlot && address1 && pincode) {
-                        setModalVisible(!modalVisible)
-                        setMsgModalVisible(!msgModalVisible)
-                        // saveBooking()
-                      } else {
-                        Alert.alert("Please enter all the required details")
+                      if (pincode.length < 6) {
+                        Alert.alert("Please enter 6 digits for pincode")
                       }
+                      else
+                        if (name && mobile && washDate && washTimeSlot && address1 && pincode) {
+                          setModalVisible(!modalVisible)
+                          setMsgModalVisible(!msgModalVisible)
+                          // saveBooking()
+                        } else {
+                          Alert.alert("Please enter all the required details")
+                        }
                 }}
               >
                 <Text style={styles.btnSubmit}>Submit</Text>

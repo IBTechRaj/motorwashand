@@ -4,13 +4,22 @@ import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import { AuthContext } from '../navigation/AuthProvider';
-import validator from 'validator';
+import Validator from 'validator';
+// const isEmpty = require("./is-empty");
+
+// const isEmpty = value => {
+//   value === undefined ||
+//     value === null ||
+//     (typeof value === "Object" && Object.keys(value).length === 0) ||
+//     (typeof value === "string" && value.trim().length === 0)
+
+// }
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
-
+  const { googleLogin } = useContext(AuthContext);
   const { register } = useContext(AuthContext);
 
   return (
@@ -51,14 +60,29 @@ const SignupScreen = ({ navigation }) => {
       <FormButton
         buttonTitle="Sign Up"
         onPress={() => {
-          if (!validator.isEmail(email)) {
-            Alert.alert('Please enter valid email')
+          if (!email && !password && !confirmPassword) {
+            Alert.alert('Please enter all details to signup')
           } else
-            if (password != confirmPassword) {
-              Alert.alert('Password and Confirm Password do not match')
-            } else {
-              register(email, password)
-            }
+            if (!Validator.isEmail(email)) {
+              Alert.alert('Please enter valid email')
+            } else
+              if (password != confirmPassword) {
+                Alert.alert('Password and Confirm Password do not match')
+              }
+              else
+                if (password.length < 6 || confirmPassword.length < 6) {
+                  Alert.alert('Password should be minimum 6 char')
+                }
+                else
+                  if (email && password && confirmPassword) {
+                    register(email, password)
+                  }
+                  else {
+                    Alert.alert("Please enter all the required details")
+                  }
+
+
+
         }
         }
       />
@@ -80,20 +104,20 @@ const SignupScreen = ({ navigation }) => {
 
       {Platform.OS === 'android' ? (
         <View>
-          <SocialButton
+          {/* <SocialButton
             buttonTitle="Sign Up with Facebook"
             btnType="facebook"
             color="#4867aa"
             backgroundColor="#e6eaf4"
             onPress={() => { }}
-          />
+          /> */}
 
           <SocialButton
             buttonTitle="Sign Up with Google"
             btnType="google"
             color="#de4d41"
             backgroundColor="#f5e7ea"
-            onPress={() => { }}
+            onPress={() => googleLogin()}
           />
         </View>
       ) : null}
@@ -142,7 +166,7 @@ const styles = StyleSheet.create({
   textPrivate: {
     flexDirection: 'row',
     flexWrap: 'wrap',
-    marginVertical: 35,
+    marginVertical: 15,
     justifyContent: 'center',
   },
   color_textPrivate: {
@@ -152,3 +176,46 @@ const styles = StyleSheet.create({
     color: 'grey',
   },
 });
+
+// let errors = {};
+// let temp_email = isEmpty(email) ? "" : email;
+// setEmail(temp_email)
+// let temp_password = isEmpty(password) ? "" : password;
+// setPassword(temp_password)
+// let temp_confirmPassword = isEmpty(confirmPassword) ? "" : confirmPassword;
+// setConfirmPassword(temp_confirmPassword)
+
+// if (Validator.isEmpty(email)) {
+//   errors.email = "Email field is required";
+// }
+// // runs if not in email exists but not in format
+// if (!Validator.isEmpty(email) && !Validator.isEmail(email)) {
+//   errors.email = "Email is invalid";
+// }
+// if (Validator.isEmpty(password)) {
+//   errors.password = "Password field is required";
+// }
+// // runs if password exists but not in proper format
+// if (
+//   !Validator.isEmpty(password) &&
+//   !Validator.isLength(password, { min: 6, max: 30 })
+// ) {
+//   errors.password = "Password must be at least 6 chracters";
+// }
+// if (Validator.isEmpty(confirmPassword)) {
+//   errors.confirmPassword = "Confirm Password ";
+// }
+// // runs if not in password 2 exists but not in format
+// if (
+//   !Validator.isEmpty(confirmPassword) &&
+//   !Validator.equals(password, confirmPassword)
+// ) {
+//   errors.confirmPassword = "Passwords must match";
+// }
+// if (!Validator.isEmpty(email) && !Validator.isEmpty(password)) {
+//   //   Alert.alert(errors)
+//   // }
+//   // else 
+//   register(email, password)
+//   // return { errors, isValid: isEmpty(errors) };
+// }
