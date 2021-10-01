@@ -5,15 +5,7 @@ import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
 import { AuthContext } from '../navigation/AuthProvider';
 import Validator from 'validator';
-// const isEmpty = require("./is-empty");
 
-// const isEmpty = value => {
-//   value === undefined ||
-//     value === null ||
-//     (typeof value === "Object" && Object.keys(value).length === 0) ||
-//     (typeof value === "string" && value.trim().length === 0)
-
-// }
 
 const SignupScreen = ({ navigation }) => {
   const [email, setEmail] = useState();
@@ -80,8 +72,6 @@ const SignupScreen = ({ navigation }) => {
                   else {
                     Alert.alert("Please enter all the required details")
                   }
-
-
 
         }
         }
@@ -177,45 +167,3 @@ const styles = StyleSheet.create({
   },
 });
 
-// let errors = {};
-// let temp_email = isEmpty(email) ? "" : email;
-// setEmail(temp_email)
-// let temp_password = isEmpty(password) ? "" : password;
-// setPassword(temp_password)
-// let temp_confirmPassword = isEmpty(confirmPassword) ? "" : confirmPassword;
-// setConfirmPassword(temp_confirmPassword)
-
-// if (Validator.isEmpty(email)) {
-//   errors.email = "Email field is required";
-// }
-// // runs if not in email exists but not in format
-// if (!Validator.isEmpty(email) && !Validator.isEmail(email)) {
-//   errors.email = "Email is invalid";
-// }
-// if (Validator.isEmpty(password)) {
-//   errors.password = "Password field is required";
-// }
-// // runs if password exists but not in proper format
-// if (
-//   !Validator.isEmpty(password) &&
-//   !Validator.isLength(password, { min: 6, max: 30 })
-// ) {
-//   errors.password = "Password must be at least 6 chracters";
-// }
-// if (Validator.isEmpty(confirmPassword)) {
-//   errors.confirmPassword = "Confirm Password ";
-// }
-// // runs if not in password 2 exists but not in format
-// if (
-//   !Validator.isEmpty(confirmPassword) &&
-//   !Validator.equals(password, confirmPassword)
-// ) {
-//   errors.confirmPassword = "Passwords must match";
-// }
-// if (!Validator.isEmpty(email) && !Validator.isEmpty(password)) {
-//   //   Alert.alert(errors)
-//   // }
-//   // else 
-//   register(email, password)
-//   // return { errors, isValid: isEmpty(errors) };
-// }

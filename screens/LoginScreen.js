@@ -23,10 +23,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* <Image
-        source={require('../assets/rn-motor-logo1.png')}
-        style={styles.logo}
-      /> */}
+      
       <Text style={styles.text}>My Motor Wash</Text>
 
       <FormInput
@@ -117,12 +114,7 @@ const styles = StyleSheet.create({
     // padding: 20,
     paddingTop: 80
   },
-  // logo: {
-  //   height: 150,
-  //   width: 150,
-  // resizeMode: 'cover',
-  //   resizeMode: 'contain',
-  // },
+  
   text: {
     fontFamily: 'Kufam-SemiBoldItalic',
     fontSize: 20,
@@ -143,8 +135,3 @@ const styles = StyleSheet.create({
   },
 });
 
-// if (validator.isEmail(email)) {
-//   login(email, password)
-// } else {
-//   Alert.alert('Please enter valid email')
-// }
