@@ -11,6 +11,8 @@ import { windowHeight, windowWidth } from '../utils/Dimentions';
 // based on iphone 5s's scale
 const scale = windowWidth / 320;
 
+const ratio = windowHeight / 1920;
+
 export function normalize(size) {
   const newSize = size * scale
   if (Platform.OS === 'ios') {
@@ -62,10 +64,14 @@ export const styles = StyleSheet.create({
   },
   image: {
     flex: 1,
-    resizeMode: 'contain',
-    height: '100%',
-    width: '100%',
-    margin: 0,
+    // image size = 1920 x 700
+    // resizeMode: 'contain',
+    // height: '100%',
+    // width: '100%',
+    // margin: 0,
+    width: windowWidth,
+    height: 1920 * ratio,
+
   },
   datePickerStyle: {
     width: 200,

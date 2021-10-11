@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react';
 import {
   View,
   Text,
+  ScrollView,
   TouchableOpacity,
   Image,
   StyleSheet,
@@ -23,7 +24,7 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      
+      <ScrollView>
       <Text style={styles.text}>My Motor Wash</Text>
 
       <FormInput
@@ -99,9 +100,10 @@ const LoginScreen = ({ navigation }) => {
           Don't have an acount? Create here
         </Text>
       </TouchableOpacity>
+      </ScrollView>
     </View>
   );
-};
+}; 
 
 export default LoginScreen;
 

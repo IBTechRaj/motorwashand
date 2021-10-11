@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import { Alert, View, Modal, Button, Text, StyleSheet, ImageBackground, Pressable } from 'react-native'
+import { Alert, View, ScrollView, Modal, Button, Text, StyleSheet, ImageBackground, Pressable } from 'react-native'
 import FormButton from '../components/FormButton'
 import BookingInput from '../components/BookingInput';
 import { windowHeight, windowWidth } from '../utils/Dimentions';
@@ -135,6 +135,7 @@ const HomeScreen = () => {
   return (
 
     <View style={styles.container}>
+    <ScrollView>
       <HomeStyles style={styles.container} />
       <ImageBackground
         source={require('../assets/bg1.jpg')}
@@ -401,7 +402,7 @@ const HomeScreen = () => {
           </Text >
         </MaterialDialog >
       </ImageBackground>
-
+    </ScrollView>
     </View >
   )
 }
