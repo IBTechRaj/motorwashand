@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { View, Text, TouchableOpacity, Platform, Image, StyleSheet, Alert } from 'react-native';
+import { View, ScrollView, Text, TouchableOpacity, Platform, Image, StyleSheet, Alert } from 'react-native';
 import FormInput from '../components/FormInput';
 import FormButton from '../components/FormButton';
 import SocialButton from '../components/SocialButton';
@@ -16,85 +16,86 @@ const SignupScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      {/* <Image
+      <ScrollView>
+        {/* <Image
         source={require('../assets/rn-motor-logo1.png')}
         style={styles.logo}
       /> */}
-      {/* <Text style={styles.text}>My Motor Wash</Text> */}
-      <Text style={styles.text}>Create an account</Text>
+        {/* <Text style={styles.text}>My Motor Wash</Text> */}
+        <Text style={styles.text}>Create an account</Text>
 
-      <FormInput
-        labelValue={email}
-        onChangeText={(userEmail) => setEmail(userEmail)}
-        placeholderText="Email"
-        iconType="user"
-        keyboardType="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
-      />
+        <FormInput
+          labelValue={email}
+          onChangeText={(userEmail) => setEmail(userEmail)}
+          placeholderText="Email"
+          iconType="user"
+          keyboardType="email-address"
+          autoCapitalize="none"
+          autoCorrect={false}
+        />
 
-      <FormInput
-        labelValue={password}
-        onChangeText={(userPassword) => setPassword(userPassword)}
-        placeholderText="Password"
-        iconType="lock"
-        secureTextEntry={true}
-      />
+        <FormInput
+          labelValue={password}
+          onChangeText={(userPassword) => setPassword(userPassword)}
+          placeholderText="Password"
+          iconType="lock"
+          secureTextEntry={true}
+        />
 
-      <FormInput
-        labelValue={confirmPassword}
-        onChangeText={(userPassword) => setConfirmPassword(userPassword)}
-        placeholderText="Confirm Password"
-        iconType="lock"
-        secureTextEntry={true}
-      />
+        <FormInput
+          labelValue={confirmPassword}
+          onChangeText={(userPassword) => setConfirmPassword(userPassword)}
+          placeholderText="Confirm Password"
+          iconType="lock"
+          secureTextEntry={true}
+        />
 
-      <FormButton
-        buttonTitle="Sign Up"
-        onPress={() => {
-          if (!email && !password && !confirmPassword) {
-            Alert.alert('Please enter all details to signup')
-          } else
-            if (!Validator.isEmail(email)) {
-              Alert.alert('Please enter valid email')
+        <FormButton
+          buttonTitle="Sign Up"
+          onPress={() => {
+            if (!email && !password && !confirmPassword) {
+              Alert.alert('Please enter all details to signup')
             } else
-              if (password != confirmPassword) {
-                Alert.alert('Password and Confirm Password do not match')
-              }
-              else
-                if (password.length < 6 || confirmPassword.length < 6) {
-                  Alert.alert('Password should be minimum 6 char')
+              if (!Validator.isEmail(email)) {
+                Alert.alert('Please enter valid email')
+              } else
+                if (password != confirmPassword) {
+                  Alert.alert('Password and Confirm Password do not match')
                 }
                 else
-                  if (email && password && confirmPassword) {
-                    register(email, password)
+                  if (password.length < 6 || confirmPassword.length < 6) {
+                    Alert.alert('Password should be minimum 6 char')
                   }
-                  else {
-                    Alert.alert("Please enter all the required details")
-                  }
+                  else
+                    if (email && password && confirmPassword) {
+                      register(email, password)
+                    }
+                    else {
+                      Alert.alert("Please enter all the required details")
+                    }
 
-        }
-        }
-      />
+          }
+          }
+        />
 
-      <View style={styles.textPrivate}>
-        <Text style={styles.color_textPrivate}>
-          By registering, you confirm that you accept our{' '}
-        </Text>
-        <TouchableOpacity onPress={() => alert('Terms Clicked!')}>
-          <Text style={[styles.color_textPrivate, { color: '#e88832' }]}>
-            Terms of service
+        <View style={styles.textPrivate}>
+          <Text style={styles.color_textPrivate}>
+            By registering, you confirm that you accept our{' '}
           </Text>
-        </TouchableOpacity>
-        <Text style={styles.color_textPrivate}> and </Text>
-        <Text style={[styles.color_textPrivate, { color: '#e88832' }]}>
-          Privacy Policy
-        </Text>
-      </View>
+          <TouchableOpacity onPress={() => alert('Terms Clicked!')}>
+            <Text style={[styles.color_textPrivate, { color: '#e88832' }]}>
+              Terms of service
+            </Text>
+          </TouchableOpacity>
+          <Text style={styles.color_textPrivate}> and </Text>
+          <Text style={[styles.color_textPrivate, { color: '#e88832' }]}>
+            Privacy Policy
+          </Text>
+        </View>
 
-      {Platform.OS === 'android' ? (
-        <View>
-          {/* <SocialButton
+        {Platform.OS === 'android' ? (
+          <View>
+            {/* <SocialButton
             buttonTitle="Sign Up with Facebook"
             btnType="facebook"
             color="#4867aa"
@@ -102,21 +103,22 @@ const SignupScreen = ({ navigation }) => {
             onPress={() => { }}
           /> */}
 
-          <SocialButton
-            buttonTitle="Sign Up with Google"
-            btnType="google"
-            color="#de4d41"
-            backgroundColor="#f5e7ea"
-            onPress={() => googleLogin()}
-          />
-        </View>
-      ) : null}
+            <SocialButton
+              buttonTitle="Sign Up with Google"
+              btnType="google"
+              color="#de4d41"
+              backgroundColor="#f5e7ea"
+              onPress={() => googleLogin()}
+            />
+          </View>
+        ) : null}
 
-      <TouchableOpacity
-        style={styles.navButton}
-        onPress={() => navigation.navigate('Login')}>
-        <Text style={styles.navButtonText}>Have an account? Sign In</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.navButton}
+          onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.navButtonText}>Have an account? Sign In</Text>
+        </TouchableOpacity>
+      </ScrollView>
     </View>
   );
 };
